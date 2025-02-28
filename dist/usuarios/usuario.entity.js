@@ -24,7 +24,7 @@ let Usuario = class Usuario {
     estado;
     fecha_creacion;
     ultima_conexion;
-    password_hash;
+    password;
     empresa;
     roles;
     movimientosInventario;
@@ -63,10 +63,10 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Usuario.prototype, "password_hash", void 0);
+], Usuario.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => empresa_entity_1.Empresa, (empresa) => empresa.usuarios),
-    __metadata("design:type", empresa_entity_1.Empresa)
+    (0, typeorm_1.ManyToOne)(() => empresa_entity_1.Empresa, (empresa) => empresa.usuarios, { nullable: true }),
+    __metadata("design:type", Object)
 ], Usuario.prototype, "empresa", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => rol_entity_1.Rol),

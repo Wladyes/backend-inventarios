@@ -1,6 +1,4 @@
-// src/usuarios/usuarios.service.ts
-
-import { Injectable, NotFoundException  } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Usuario } from './usuario.entity';
@@ -21,12 +19,19 @@ export class UsuariosService {
       where: { id_usuario: id },
       relations: ['empresa', 'roles'],
     });
-  
+
     if (!usuario) {
       throw new NotFoundException(`Usuario con id ${id} no encontrado`);
     }
-  
+
     return usuario;
+  }
+
+  async findByEmail(email: string): Promise<Usuario | null> {
+    return await this.usuariosRepository.findOne({
+      where: { email },
+      relations: ['empresa', 'roles'],
+    });
   }
 
   async create(usuario: Usuario): Promise<Usuario> {

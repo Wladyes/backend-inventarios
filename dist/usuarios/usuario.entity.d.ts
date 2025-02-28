@@ -11,8 +11,8 @@ export declare class Usuario {
     estado: string;
     fecha_creacion: Date;
     ultima_conexion: Date;
-    password_hash: string;
-    empresa: Empresa;
+    password: string;
+    empresa: Empresa | null;
     roles: Rol[];
     movimientosInventario: MovimientoInventario[];
     productos: Producto[];

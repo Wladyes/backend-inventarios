@@ -35,6 +35,12 @@ let UsuariosService = class UsuariosService {
         }
         return usuario;
     }
+    async findByEmail(email) {
+        return await this.usuariosRepository.findOne({
+            where: { email },
+            relations: ['empresa', 'roles'],
+        });
+    }
     async create(usuario) {
         return await this.usuariosRepository.save(usuario);
     }

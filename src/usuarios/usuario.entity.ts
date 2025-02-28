@@ -1,5 +1,3 @@
-// src/usuarios/usuario.entity.ts
-
 import {
   Entity,
   Column,
@@ -11,7 +9,6 @@ import {
 } from 'typeorm';
 import { Empresa } from '../empresas/empresa.entity';
 import { Rol } from '../roles/rol.entity';
-//import { Inventario } from '../inventarios/inventario.entity';
 import { MovimientoInventario } from '../movimientos-inventario/movimiento-inventario.entity';
 import { Producto } from '../productos/producto.entity';
 import { Categoria } from '../categorias/categoria.entity';
@@ -40,10 +37,10 @@ export class Usuario {
   ultima_conexion: Date;
 
   @Column()
-  password_hash: string;
+  password: string; // ✅ Ahora se usa "password" en lugar de "password_hash"
 
-  @ManyToOne(() => Empresa, (empresa) => empresa.usuarios)
-  empresa: Empresa;
+  @ManyToOne(() => Empresa, (empresa) => empresa.usuarios, { nullable: true }) // ✅ Permitir valores null
+  empresa: Empresa | null;
 
   @ManyToMany(() => Rol)
   @JoinTable({
@@ -57,7 +54,7 @@ export class Usuario {
   @OneToMany(() => MovimientoInventario, (movimientoInventario) => movimientoInventario.usuario)
   movimientosInventario: MovimientoInventario[];
 
-   // Relación con Producto
+  // Relación con Producto
   @ManyToMany(() => Producto, (producto) => producto.usuarios)
   @JoinTable({
     name: 'usuario_producto',
