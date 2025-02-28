@@ -1,0 +1,15 @@
+// src/empresas/empresas.module.ts
+
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmpresasService } from './empresas.service';
+import { EmpresasController } from './empresas.controller';
+import { Empresa } from './empresa.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Empresa])],
+  providers: [EmpresasService],
+  controllers: [EmpresasController],
+  exports: [EmpresasService],
+})
+export class EmpresasModule {}

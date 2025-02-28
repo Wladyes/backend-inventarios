@@ -1,0 +1,20 @@
+### Obtener todas las empresas
+GET http://localhost:3000/empresas
+Content-Type: application/json
+
+###
+
+### Crear una nueva empresa
+POST http://localhost:3000/empresas
+Content-Type: application/json
+
+{
+  "nombre": "Mi Empresa",
+  "ruc": "1234567890",
+  "direccion": "Av. Principal 123",
+  "telefono": "0987654321",
+  "email_contacto": "contacto@miempresa.com",
+  "sector": "Tecnología",
+  "fecha_creacion": "2025-02-24T00:00:00Z",
+  "estado": "Activo"
+}
